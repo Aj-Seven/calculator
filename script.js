@@ -1,109 +1,60 @@
-let result = document.querySelector("#result");
-let buttons = document.querySelectorAll(".buttons");
+const screenDisplay = document.querySelector(".display")
+const buttons = document.querySelectorAll("button")
+let calculation =[]
+let accumulativeCalculation
 
-result.innerText = "0";
-let content = "";
-
-const operations = [
-  {
-    operation: "+",
-    process: (a, b) => a + b
-  },
-  {
-    operation: "-",
-    process: (a, b) => a - b
-  },
-  {
-    operation: "/",
-    process: (a, b) => a / b
-  },
-  {
-    operation: "*",
-    process: (a, b) => a * b
+function calculate(button) {
+  const value = button.textContent
+  if (value == "CLR" || value == "Del") {
+    calculation = []
+    screenDisplay.textContent = ''
+  }else if (value === "=") {
+    screenDisplay.textContent = eval(accumulativeCalculation)
+  } else {
+    calculation.push(value)
+    accumulativeCalculation = calculation.join('')
+    screenDisplay.textContent = accumulativeCalculation
   }
-];
 
-buttons.forEach((operation) => {
-  operation.addEventListener("click", (e) => {
-    const value = e.target.innerText;
+}
 
-    const getOperation = operations.find((item) =>
-      content.includes(item.operation)
-    );
+buttons.forEach(button =>  button.addEventListener('click', () => calculate(button)))
 
-    if (value === "=") {
-      let [a, b] = content.split(getOperation.operation);
-      const calcuted = getOperation.process(Number(a), Number(b));
-      result.innerText = calcuted;
-      content = String(calcuted);
 
-      return;
-    }
+let switches = document.getElementsByClassName('switch');
+let style = localStorage.getItem('style');
 
-    switch (value) {
-      case "0":
-        if (result.innerText === "0") {
-          result.innerText = "0";
-        } else {
-          content += value;
-          result.innerText = content;
-        }
-        break;
+if (style == null) {
+  setTheme('light');
+} else {
+  setTheme(style);
+}
 
-      case "Del":
-        let last = result.innerText.substr(0, result.innerText.length - 1);
-        result.innerText = last;
-        content = last;
-        if (result.innerText === "") {
-          result.innerText = "0";
-          content = "";
-        }
-        break;
-
-      case "CLR":
-        result.innerText = "0";
-        content = "";
-        break;
-
-      case "+":
-        if (result.innerText === "0") {
-          result.innerText = "0";
-        } else {
-          content += value;
-          result.innerText = content;
-        }
-        break;
-
-      case "-":
-        if (result.innerText === "0") {
-          result.innerText = "0";
-        } else {
-          content += value;
-          result.innerText = content;
-        }
-        break;
-
-      case "/":
-        if (result.innerText === "0") {
-          result.innerText = "0";
-        } else {
-          content += value;
-          result.innerText = content;
-        }
-        break;
-
-      case "*":
-        if (result.innerText === "0") {
-          result.innerText = "0";
-        } else {
-          content += value;
-          result.innerText = content;
-        }
-        break;
-
-      default:
-        content += value;
-        result.innerText = content;
-    }
+for (let i of switches) {
+  i.addEventListener('click', function () {
+    let theme = this.dataset.theme;
+    setTheme(theme);
   });
-});
+}
+
+function setTheme(theme) {
+  if (theme == 'light' ) {
+    document.getElementById('switcher-id').href = './themes/light-theme.css';
+  } else if (theme == 'sky') {
+    document.getElementById('switcher-id').href = './themes/theme1.css';
+  } else if (theme == 'purple') {
+    document.getElementById('switcher-id').href = './themes/theme2.css';
+  } else if (theme == 'dark') {
+    document.getElementById('switcher-id').href = './themes/dark-theme.css';
+  }
+  localStorage.setItem('style', theme);
+}
+
+function toggle() {
+  const t = document.getElementById("toggle");
+  if (t.style.display === "none") {
+    t.style.display = "flex";
+  } else {
+    t.style.display = "none";
+  }
+}

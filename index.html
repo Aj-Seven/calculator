@@ -2,18 +2,27 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="/assets/icon-calculator.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" id="switcher-id" href="">
   <title> Calculator</title>
 </head>
 
 <body>
   <div id="calculator" class="calc">
     <div id="name">-->Aj7 </div>
-    <div id="n1"> Calculator </div>
+    <div id="n1">     Calculator
+      <button id="theme"onclick="toggle()" style="background: none; border-radius: 100px;"> <img src="/assets/paint-palette.png" style="height: 28px; width: 28px;"/> </button>
+    </div>
+    <div id="toggle" class="theme-switches">
+      <div data-theme="light" class="switch" id="switch-1"></div>
+      <div data-theme="sky" class="switch" id="switch-2"></div>
+      <div data-theme="purple" class="switch" id="switch-3"></div>
+      <div data-theme="dark" class="switch" id="switch-4"></div>
+  </div>
     <div id="result" class="display">
       0
     </div>
-
     <div class="container">
       <div class="one">
       <button class="buttons" id="clr">CLR</button>
