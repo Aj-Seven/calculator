@@ -25,7 +25,7 @@ Default-Theme                 |   Light-Theme
 
 #### Live Demo [here](https://calculator-aj.pages.dev)
 
-<details align="center">
+<details>
 <summary> Images </summary>
 
 
