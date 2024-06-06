@@ -23,7 +23,7 @@ Default-Theme                 |   Light-Theme
 
 -------
 
-#### Live Demo [here](https://calculator-aj.pages.dev)
+#### Live Demo [here](https://aj-seven.github.io/calculator/)
 
 <details>
 <summary> Images </summary>
